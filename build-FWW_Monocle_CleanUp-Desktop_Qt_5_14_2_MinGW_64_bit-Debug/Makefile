@@ -278,7 +278,7 @@ Makefile: ../FWW_Monocle_CleanUp/FWW_Monocle_CleanUp.pro ../../../../Qt_Work/5.1
 		../../../../Qt_Work/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		../../../../Qt_Work/5.14.2/mingw73_64/lib/qtmain.prl \
 		../../../../Qt_Work/5.14.2/mingw73_64/mkspecs/features/build_pass.prf \
-		../FWW_Monocle_CleanUp/resources.qrc
+		../FWW_Monocle_CleanUp/icons.qrc
 	$(QMAKE) -o Makefile ..\FWW_Monocle_CleanUp\FWW_Monocle_CleanUp.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../Qt_Work/5.14.2/mingw73_64/mkspecs/features/spec_pre.prf:
 ../../../../Qt_Work/5.14.2/mingw73_64/mkspecs/qdevice.pri:
@@ -488,7 +488,7 @@ Makefile: ../FWW_Monocle_CleanUp/FWW_Monocle_CleanUp.pro ../../../../Qt_Work/5.1
 ../../../../Qt_Work/5.14.2/mingw73_64/lib/Qt5Core.prl:
 ../../../../Qt_Work/5.14.2/mingw73_64/lib/qtmain.prl:
 ../../../../Qt_Work/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
-../FWW_Monocle_CleanUp/resources.qrc:
+../FWW_Monocle_CleanUp/icons.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\FWW_Monocle_CleanUp\FWW_Monocle_CleanUp.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

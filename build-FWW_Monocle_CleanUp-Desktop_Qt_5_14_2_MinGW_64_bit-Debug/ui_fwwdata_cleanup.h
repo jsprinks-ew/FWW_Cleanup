@@ -23,6 +23,8 @@ class Ui_FWWData_Cleanup
 public:
     QWidget *centralwidget;
     QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *FWWData_Cleanup)
@@ -30,14 +32,20 @@ public:
         if (FWWData_Cleanup->objectName().isEmpty())
             FWWData_Cleanup->setObjectName(QString::fromUtf8("FWWData_Cleanup"));
         FWWData_Cleanup->resize(800, 600);
-        FWWData_Cleanup->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 127);"));
+        FWWData_Cleanup->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         centralwidget = new QWidget(FWWData_Cleanup);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 10, 781, 71));
+        label->setGeometry(QRect(100, 10, 591, 101));
         label->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         label->setAlignment(Qt::AlignCenter);
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(10, 10, 91, 101));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(650, 10, 131, 91));
         FWWData_Cleanup->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(FWWData_Cleanup);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -52,6 +60,8 @@ public:
     {
         FWWData_Cleanup->setWindowTitle(QCoreApplication::translate("FWWData_Cleanup", "FWWData_Cleanup", nullptr));
         label->setText(QCoreApplication::translate("FWWData_Cleanup", "<html><head/><body><p><span style=\" font-size:18pt;\">FreshWater Watch Data Cleanup Utility</span></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("FWWData_Cleanup", "<html><head/><body><p><img src=\":/images/Images/fresh.jpg\"/></p></body></html>", nullptr));
+        label_3->setText(QCoreApplication::translate("FWWData_Cleanup", "<html><head/><body><p><img src=\":/images/Images/monocle.png\"/></p></body></html>", nullptr));
     } // retranslateUi
 
 };
