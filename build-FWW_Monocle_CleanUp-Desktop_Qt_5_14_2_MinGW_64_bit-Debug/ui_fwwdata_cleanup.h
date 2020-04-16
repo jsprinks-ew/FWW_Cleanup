@@ -27,6 +27,7 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
+    QLabel *label_6;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *FWWData_Cleanup)
@@ -34,7 +35,7 @@ public:
         if (FWWData_Cleanup->objectName().isEmpty())
             FWWData_Cleanup->setObjectName(QString::fromUtf8("FWWData_Cleanup"));
         FWWData_Cleanup->resize(800, 600);
-        FWWData_Cleanup->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+        FWWData_Cleanup->setStyleSheet(QString::fromUtf8("background-color: rgb(85, 85, 255);"));
         centralwidget = new QWidget(FWWData_Cleanup);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -56,12 +57,18 @@ public:
         label_5->setGeometry(QRect(10, 110, 781, 20));
         label_5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         label_5->setAlignment(Qt::AlignCenter);
+        label_6 = new QLabel(centralwidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(10, 130, 781, 16));
+        label_6->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        label_6->setAlignment(Qt::AlignCenter);
         FWWData_Cleanup->setCentralWidget(centralwidget);
         label_4->raise();
         label->raise();
         label_2->raise();
         label_3->raise();
         label_5->raise();
+        label_6->raise();
         statusbar = new QStatusBar(FWWData_Cleanup);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         FWWData_Cleanup->setStatusBar(statusbar);
@@ -79,6 +86,7 @@ public:
         label_3->setText(QCoreApplication::translate("FWWData_Cleanup", "<html><head/><body><p><img src=\":/images/Images/monocle.png\"/></p></body></html>", nullptr));
         label_4->setText(QString());
         label_5->setText(QCoreApplication::translate("FWWData_Cleanup", "Created by James Sprinks, jsprinks@earthwatch.org.uk", nullptr));
+        label_6->setText(QCoreApplication::translate("FWWData_Cleanup", "Program that re-formats and anonamizes FreshWater Watch csv data, suitable for uploading to GeoServer for data sharing with the MONOCLE consortium.", nullptr));
     } // retranslateUi
 
 };
