@@ -15,6 +15,9 @@ public:
     FWWData_Cleanup(QWidget *parent = nullptr);
     ~FWWData_Cleanup();
 
+private slots:
+    void rawButton();
+
 private:
     Ui::FWWData_Cleanup *ui;
 };
