@@ -29,7 +29,20 @@ void FWWData_Cleanup::rawButton()
 
 void FWWData_Cleanup::flagErrors()
 {
+    QFile File(rawfile);
+    QString line;
 
+    if(File.open(QIODevice::ReadOnly))
+    {
+        QTextStream out(&File);
+        while(!out.atEnd())
+        {
+            line=out.readLine();
+            QStringList cols = line.split(",");
+            qDebug() << cols;
+            qDebug() << cols.size();
+        }
+    }
 }
 
 FWWData_Cleanup::~FWWData_Cleanup()
