@@ -31,17 +31,40 @@ void FWWData_Cleanup::flagErrors()
 {
     QFile File(rawfile);
     QString line;
+    QStringList cols;
+
+    int i;
 
     if(File.open(QIODevice::ReadOnly))
     {
         QTextStream out(&File);
+        i = 0;
         while(!out.atEnd())
         {
+
             line=out.readLine();
-            QStringList cols = line.split(",");
-            qDebug() << cols;
-            qDebug() << cols.size();
+            cols = line.split(",");
+            int size = cols.size();
+
+            if (i == 0)
+            {
+            cols.append("Flagged");
+            cols.append("Flag Reason");
+            }
+            else
+            {
+            cols.append("-");
+            cols.append("-");
+            }
+            i = i + 1;
+
+
+
+            qDebug() << cols.at(105);
         }
+
+
+
     }
 }
 
