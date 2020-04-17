@@ -31,6 +31,8 @@ public:
     QLabel *label_6;
     QPushButton *rawData;
     QLabel *file_name;
+    QLabel *data_info;
+    QPushButton *flagButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *FWWData_Cleanup)
@@ -74,6 +76,15 @@ public:
         file_name->setGeometry(QRect(210, 160, 581, 51));
         file_name->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         file_name->setAlignment(Qt::AlignCenter);
+        data_info = new QLabel(centralwidget);
+        data_info->setObjectName(QString::fromUtf8("data_info"));
+        data_info->setGeometry(QRect(210, 220, 581, 51));
+        data_info->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        data_info->setAlignment(Qt::AlignCenter);
+        flagButton = new QPushButton(centralwidget);
+        flagButton->setObjectName(QString::fromUtf8("flagButton"));
+        flagButton->setGeometry(QRect(10, 220, 181, 51));
+        flagButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
         FWWData_Cleanup->setCentralWidget(centralwidget);
         label_4->raise();
         label->raise();
@@ -83,6 +94,8 @@ public:
         label_6->raise();
         rawData->raise();
         file_name->raise();
+        data_info->raise();
+        flagButton->raise();
         statusbar = new QStatusBar(FWWData_Cleanup);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         FWWData_Cleanup->setStatusBar(statusbar);
@@ -103,6 +116,8 @@ public:
         label_6->setText(QCoreApplication::translate("FWWData_Cleanup", "Program that re-formats and anonamizes FreshWater Watch csv data, suitable for uploading to GeoServer for data sharing with the MONOCLE consortium.", nullptr));
         rawData->setText(QCoreApplication::translate("FWWData_Cleanup", "Upload raw datafile (.csv)", nullptr));
         file_name->setText(QCoreApplication::translate("FWWData_Cleanup", "file not uploaded", nullptr));
+        data_info->setText(QCoreApplication::translate("FWWData_Cleanup", "Data issues not checked", nullptr));
+        flagButton->setText(QCoreApplication::translate("FWWData_Cleanup", "Flag data issues", nullptr));
     } // retranslateUi
 
 };
