@@ -77,22 +77,43 @@ void FWWData_Cleanup::flagErrors()
                     cols.append("Y");
                     cols.append("nitrate");
                 }
-                if (cols.at(phosphatepos) == "-" && cols.size() < datasize)
+                if (cols.at(phosphatepos) == "-")
                 {
-                    cols.append("Y");
-                    cols.append("phosphate");
+                    if (cols.size() < datasize)
+                    {
+                        cols.append("Y");
+                        cols.append("phosphate");
+                    }
+                    else
+                    {
+                        cols[flagpos+1] = cols[flagpos+1] + "-phosphate";
+                    }
                 }
-                if ((cols.at(geopos) == "-" or cols.at(geopos) == "0 | 0") && (cols.size() < datasize))
+                if (cols.at(geopos) == "-" or cols.at(geopos) == "0 | 0")
                 {
-                    cols.append("Y");
-                    cols.append("geolocation");
+                    if (cols.size() < datasize)
+                    {
+                        cols.append("Y");
+                        cols.append("geolocation");
+                    }
+                    else
+                    {
+                        cols[flagpos+1] = cols[flagpos+1] + "-geolocation";
+                    }
                 }
-                if ((cols.at(notespos).contains("test") or cols.at(notespos).contains("Test")) && (cols.size() < datasize))
+                if (cols.at(notespos).contains("test") or cols.at(notespos).contains("Test"))
                 {
-                    cols.append("Y");
-                    cols.append("test");
+                    if (cols.size() < datasize)
+                    {
+                        cols.append("Y");
+                        cols.append("test");
+                    }
+                    else
+                    {
+                        cols[flagpos+1] = cols[flagpos+1] + "-test";
+                    }
                 }
-                if ((cols.at(colourpos) == "-" or cols.at(colourpos) == "Colourless") && (cols.size() < datasize))
+                if (cols.at(colourpos) == "-" or cols.at(colourpos) == "Colourless")
                 {
                     QString turbval;
                     if (cols.at(turbpos).contains("<") or cols.at(turbpos).contains(">"))
@@ -104,8 +125,15 @@ void FWWData_Cleanup::flagErrors()
                     int turbvalint = turbval.toInt();
                     if (turbvalint < 40)
                     {
-                        cols.append("Y");
-                        cols.append("turbidity");
+                        if(cols.size() < datasize)
+                        {
+                            cols.append("Y");
+                            cols.append("turbidity");
+                        }
+                        else
+                        {
+                            cols[flagpos+1] = cols[flagpos+1] + "-turbidity";
+                        }
                     }
 
                 }
