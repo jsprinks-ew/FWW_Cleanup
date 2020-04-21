@@ -33,7 +33,18 @@ void FWWData_Cleanup::flagErrors()
     QString line;
     QStringList cols;
 
+    QString output = ui->file_name->text();
+    QFile Output(output.replace(".csv","_flagged.csv"));
+
     int i;
+    int geopos = 0;
+    int nitratepos = 0;
+    int phosphatepos = 0;
+    int turbpos = 0;
+    int notespos = 0;
+    int colourpos = 0;
+    int datasize = 0;
+    int flagpos = 0;
 
     if(File.open(QIODevice::ReadOnly))
     {
@@ -44,29 +55,92 @@ void FWWData_Cleanup::flagErrors()
 
             line=out.readLine();
             cols = line.split(",");
-            int size = cols.size();
 
             if (i == 0)
             {
             cols.append("Flagged");
             cols.append("Flag Reason");
+            geopos = cols.indexOf("Geolocation (Latitude | Longitude)");
+            nitratepos = cols.indexOf("Nitrate");
+            phosphatepos = cols.indexOf("Phosphate");
+            turbpos = cols.indexOf("Water Quality â€“ Secchi Tube (Turbidity).");
+            notespos = cols.indexOf("Notes");
+            colourpos = cols.indexOf("Estimate the water colour");
+            flagpos = cols.indexOf("Flagged");
+            datasize = cols.size();
             }
+
             else
             {
-            cols.append("-");
-            cols.append("-");
+                if (cols.at(nitratepos) == "-" && cols.size() < datasize)
+                {
+                    cols.append("Y");
+                    cols.append("nitrate");
+                }
+                if (cols.at(phosphatepos) == "-" && cols.size() < datasize)
+                {
+                    cols.append("Y");
+                    cols.append("phosphate");
+                }
+                if ((cols.at(geopos) == "-" or cols.at(geopos) == "0 | 0") && (cols.size() < datasize))
+                {
+                    cols.append("Y");
+                    cols.append("geolocation");
+                }
+                if ((cols.at(notespos).contains("test") or cols.at(notespos).contains("Test")) && (cols.size() < datasize))
+                {
+                    cols.append("Y");
+                    cols.append("test");
+                }
+                if ((cols.at(colourpos) == "-" or cols.at(colourpos) == "Colourless") && (cols.size() < datasize))
+                {
+                    QString turbval;
+                    if (cols.at(turbpos).contains("<") or cols.at(turbpos).contains(">"))
+                    {
+                       turbval = cols.at(turbpos);
+                       turbval.remove("<");
+                       turbval.remove(">");
+                    }
+                    int turbvalint = turbval.toInt();
+                    if (turbvalint < 40)
+                    {
+                        cols.append("Y");
+                        cols.append("turbidity");
+                    }
+
+                }
             }
+
+
             i = i + 1;
+            qDebug() << cols;
 
 
 
-            qDebug() << cols.at(105);
+            Output.open(QIODevice::Append | QIODevice::Text);
+            QTextStream stream(&Output);
+            stream.setCodec("Windows-1250");
+            QString str = cols.join(",");
+
+            stream << str << "\n";
+            }
+
         }
+            qDebug() << geopos;
+            qDebug() << nitratepos;
+            qDebug() << phosphatepos;
+            qDebug() << turbpos;
+            qDebug() << notespos;
+            qDebug() << colourpos;
+            qDebug() << datasize;
+
+            Output.close();
+            File.close();
 
 
 
-    }
 }
+
 
 FWWData_Cleanup::~FWWData_Cleanup()
 {
