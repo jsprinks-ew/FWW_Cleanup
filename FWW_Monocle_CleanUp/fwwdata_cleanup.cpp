@@ -16,6 +16,12 @@ FWWData_Cleanup::FWWData_Cleanup(QWidget *parent)
     ui->setupUi(this);
     connect(ui->rawData, SIGNAL (released()), this, SLOT (rawButton()));
     connect(ui->flagButton, SIGNAL (released()), this, SLOT (flagErrors()));
+
+    ui->nitrate_num->setPalette(Qt::red);
+    ui->phos_num->setPalette(Qt::red);
+    ui->loc_num->setPalette(Qt::red);
+    ui->turb_num->setPalette(Qt::red);
+    ui->test_num->setPalette(Qt::red);
 }
 
 void FWWData_Cleanup::rawButton()
@@ -45,6 +51,11 @@ void FWWData_Cleanup::flagErrors()
     int colourpos = 0;
     int datasize = 0;
     int flagpos = 0;
+    int nitratetotal = 0;
+    int geototal = 0;
+    int phosphatetotal = 0;
+    int turbtotal = 0;
+    int notestotal = 0;
 
     if(File.open(QIODevice::ReadOnly))
     {
@@ -76,6 +87,9 @@ void FWWData_Cleanup::flagErrors()
                 {
                     cols.append("Y");
                     cols.append("nitrate");
+                    nitratetotal = nitratetotal+1;
+                    ui->nitrate_num->display(nitratetotal);
+
                 }
                 if (cols.at(phosphatepos) == "-")
                 {
@@ -83,10 +97,14 @@ void FWWData_Cleanup::flagErrors()
                     {
                         cols.append("Y");
                         cols.append("phosphate");
+                        phosphatetotal = phosphatetotal+1;
+                        ui->phos_num->display(phosphatetotal);
                     }
                     else
                     {
                         cols[flagpos+1] = cols[flagpos+1] + "-phosphate";
+                        phosphatetotal = phosphatetotal+1;
+                        ui->phos_num->display(phosphatetotal);
                     }
                 }
                 if (cols.at(geopos) == "-" or cols.at(geopos) == "0 | 0")
@@ -95,10 +113,14 @@ void FWWData_Cleanup::flagErrors()
                     {
                         cols.append("Y");
                         cols.append("geolocation");
+                        geototal = geototal+1;
+                        ui->loc_num->display(geototal);
                     }
                     else
                     {
                         cols[flagpos+1] = cols[flagpos+1] + "-geolocation";
+                        geototal = geototal+1;
+                        ui->loc_num->display(geototal);
                     }
                 }
                 if (cols.at(notespos).contains("test") or cols.at(notespos).contains("Test"))
@@ -107,10 +129,14 @@ void FWWData_Cleanup::flagErrors()
                     {
                         cols.append("Y");
                         cols.append("test");
+                        notestotal = notestotal+1;
+                        ui->test_num->display(notestotal);
                     }
                     else
                     {
                         cols[flagpos+1] = cols[flagpos+1] + "-test";
+                        notestotal = notestotal+1;
+                        ui->test_num->display(notestotal);
                     }
                 }
                 if (cols.at(colourpos) == "-" or cols.at(colourpos) == "Colourless")
@@ -129,10 +155,14 @@ void FWWData_Cleanup::flagErrors()
                         {
                             cols.append("Y");
                             cols.append("turbidity");
+                            turbtotal=turbtotal+1;
+                            ui->turb_num->display(turbtotal);
                         }
                         else
                         {
                             cols[flagpos+1] = cols[flagpos+1] + "-turbidity";
+                            turbtotal=turbtotal+1;
+                            ui->turb_num->display(turbtotal);
                         }
                     }
 
@@ -141,15 +171,11 @@ void FWWData_Cleanup::flagErrors()
 
 
             i = i + 1;
-            qDebug() << cols;
-
-
 
             Output.open(QIODevice::Append | QIODevice::Text);
             QTextStream stream(&Output);
             stream.setCodec("Windows-1250");
             QString str = cols.join(",");
-
             stream << str << "\n";
             }
 
@@ -164,9 +190,6 @@ void FWWData_Cleanup::flagErrors()
 
             Output.close();
             File.close();
-
-
-
 }
 
 

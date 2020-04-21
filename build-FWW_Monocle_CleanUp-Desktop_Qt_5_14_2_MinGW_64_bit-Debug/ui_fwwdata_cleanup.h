@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -31,8 +32,17 @@ public:
     QLabel *label_6;
     QPushButton *rawData;
     QLabel *file_name;
-    QLabel *data_info;
+    QLabel *nitrate_dis;
     QPushButton *flagButton;
+    QLabel *phos_dis;
+    QLabel *geo_dis;
+    QLabel *turb_dis;
+    QLabel *notes_dis;
+    QLCDNumber *nitrate_num;
+    QLCDNumber *phos_num;
+    QLCDNumber *loc_num;
+    QLCDNumber *turb_num;
+    QLCDNumber *test_num;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *FWWData_Cleanup)
@@ -76,15 +86,60 @@ public:
         file_name->setGeometry(QRect(210, 160, 581, 51));
         file_name->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         file_name->setAlignment(Qt::AlignCenter);
-        data_info = new QLabel(centralwidget);
-        data_info->setObjectName(QString::fromUtf8("data_info"));
-        data_info->setGeometry(QRect(210, 220, 581, 51));
-        data_info->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        data_info->setAlignment(Qt::AlignCenter);
+        nitrate_dis = new QLabel(centralwidget);
+        nitrate_dis->setObjectName(QString::fromUtf8("nitrate_dis"));
+        nitrate_dis->setGeometry(QRect(210, 220, 101, 21));
+        nitrate_dis->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        nitrate_dis->setAlignment(Qt::AlignCenter);
         flagButton = new QPushButton(centralwidget);
         flagButton->setObjectName(QString::fromUtf8("flagButton"));
         flagButton->setGeometry(QRect(10, 220, 181, 51));
         flagButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+        phos_dis = new QLabel(centralwidget);
+        phos_dis->setObjectName(QString::fromUtf8("phos_dis"));
+        phos_dis->setGeometry(QRect(330, 220, 101, 21));
+        phos_dis->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        phos_dis->setAlignment(Qt::AlignCenter);
+        geo_dis = new QLabel(centralwidget);
+        geo_dis->setObjectName(QString::fromUtf8("geo_dis"));
+        geo_dis->setGeometry(QRect(450, 220, 101, 21));
+        geo_dis->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        geo_dis->setAlignment(Qt::AlignCenter);
+        turb_dis = new QLabel(centralwidget);
+        turb_dis->setObjectName(QString::fromUtf8("turb_dis"));
+        turb_dis->setGeometry(QRect(570, 220, 101, 21));
+        turb_dis->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        turb_dis->setAlignment(Qt::AlignCenter);
+        notes_dis = new QLabel(centralwidget);
+        notes_dis->setObjectName(QString::fromUtf8("notes_dis"));
+        notes_dis->setGeometry(QRect(690, 220, 101, 21));
+        notes_dis->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        notes_dis->setAlignment(Qt::AlignCenter);
+        nitrate_num = new QLCDNumber(centralwidget);
+        nitrate_num->setObjectName(QString::fromUtf8("nitrate_num"));
+        nitrate_num->setGeometry(QRect(210, 250, 101, 23));
+        nitrate_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);"));
+        phos_num = new QLCDNumber(centralwidget);
+        phos_num->setObjectName(QString::fromUtf8("phos_num"));
+        phos_num->setGeometry(QRect(330, 250, 101, 23));
+        phos_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);"));
+        loc_num = new QLCDNumber(centralwidget);
+        loc_num->setObjectName(QString::fromUtf8("loc_num"));
+        loc_num->setGeometry(QRect(450, 250, 101, 23));
+        loc_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);"));
+        turb_num = new QLCDNumber(centralwidget);
+        turb_num->setObjectName(QString::fromUtf8("turb_num"));
+        turb_num->setGeometry(QRect(570, 250, 101, 23));
+        turb_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);"));
+        test_num = new QLCDNumber(centralwidget);
+        test_num->setObjectName(QString::fromUtf8("test_num"));
+        test_num->setGeometry(QRect(690, 250, 101, 23));
+        test_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);"));
         FWWData_Cleanup->setCentralWidget(centralwidget);
         label_4->raise();
         label->raise();
@@ -94,8 +149,17 @@ public:
         label_6->raise();
         rawData->raise();
         file_name->raise();
-        data_info->raise();
+        nitrate_dis->raise();
         flagButton->raise();
+        phos_dis->raise();
+        geo_dis->raise();
+        turb_dis->raise();
+        notes_dis->raise();
+        nitrate_num->raise();
+        phos_num->raise();
+        loc_num->raise();
+        turb_num->raise();
+        test_num->raise();
         statusbar = new QStatusBar(FWWData_Cleanup);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         FWWData_Cleanup->setStatusBar(statusbar);
@@ -116,8 +180,12 @@ public:
         label_6->setText(QCoreApplication::translate("FWWData_Cleanup", "Program that re-formats and anonamizes FreshWater Watch csv data, suitable for uploading to GeoServer for data sharing with the MONOCLE consortium.", nullptr));
         rawData->setText(QCoreApplication::translate("FWWData_Cleanup", "Upload raw datafile (.csv)", nullptr));
         file_name->setText(QCoreApplication::translate("FWWData_Cleanup", "file not uploaded", nullptr));
-        data_info->setText(QCoreApplication::translate("FWWData_Cleanup", "Data issues not checked", nullptr));
+        nitrate_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Nitrate issues:", nullptr));
         flagButton->setText(QCoreApplication::translate("FWWData_Cleanup", "Flag data issues", nullptr));
+        phos_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Phosphate issues:", nullptr));
+        geo_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Location issues:", nullptr));
+        turb_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Turbidity issues:", nullptr));
+        notes_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Test data:", nullptr));
     } // retranslateUi
 
 };
