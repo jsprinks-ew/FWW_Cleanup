@@ -43,6 +43,7 @@ public:
     QLCDNumber *loc_num;
     QLCDNumber *turb_num;
     QLCDNumber *test_num;
+    QPushButton *columnbutton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *FWWData_Cleanup)
@@ -140,6 +141,11 @@ public:
         test_num->setGeometry(QRect(690, 250, 101, 23));
         test_num->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);"));
+        columnbutton = new QPushButton(centralwidget);
+        columnbutton->setObjectName(QString::fromUtf8("columnbutton"));
+        columnbutton->setGeometry(QRect(10, 280, 181, 51));
+        columnbutton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);\n"
+"background-color: rgb(255, 85, 0);"));
         FWWData_Cleanup->setCentralWidget(centralwidget);
         label_4->raise();
         label->raise();
@@ -160,6 +166,7 @@ public:
         loc_num->raise();
         turb_num->raise();
         test_num->raise();
+        columnbutton->raise();
         statusbar = new QStatusBar(FWWData_Cleanup);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         FWWData_Cleanup->setStatusBar(statusbar);
@@ -186,6 +193,7 @@ public:
         geo_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Location issues:", nullptr));
         turb_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Turbidity issues:", nullptr));
         notes_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Test data:", nullptr));
+        columnbutton->setText(QCoreApplication::translate("FWWData_Cleanup", "Remove empty columns", nullptr));
     } // retranslateUi
 
 };

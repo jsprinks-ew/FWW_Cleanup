@@ -18,6 +18,7 @@ public:
 private slots:
     void rawButton();
     void flagErrors();
+    void deleteColumns();
 
 private:
     Ui::FWWData_Cleanup *ui;

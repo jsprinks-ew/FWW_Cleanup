@@ -329,6 +329,23 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="columnbutton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+background-color: rgb(255, 85, 0);</string>
+    </property>
+    <property name="text">
+     <string>Remove empty columns</string>
+    </property>
+   </widget>
    <zorder>label_4</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
@@ -348,6 +365,7 @@ color: rgb(0, 0, 0);</string>
    <zorder>loc_num</zorder>
    <zorder>turb_num</zorder>
    <zorder>test_num</zorder>
+   <zorder>columnbutton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -16,6 +16,7 @@ FWWData_Cleanup::FWWData_Cleanup(QWidget *parent)
     ui->setupUi(this);
     connect(ui->rawData, SIGNAL (released()), this, SLOT (rawButton()));
     connect(ui->flagButton, SIGNAL (released()), this, SLOT (flagErrors()));
+    connect(ui->columnbutton, SIGNAL (released()), this, SLOT (deleteColumns()));
 
     ui->nitrate_num->setPalette(Qt::red);
     ui->phos_num->setPalette(Qt::red);
@@ -190,6 +191,16 @@ void FWWData_Cleanup::flagErrors()
 
             Output.close();
             File.close();
+}
+
+void FWWData_Cleanup::deleteColumns()
+{
+    QString input = ui->file_name->text();
+    QFile Input(input.replace(".csv","_flagged.csv"));
+    QStringList rows;
+    QStringList check;
+
+
 }
 
 
