@@ -343,7 +343,8 @@ color: rgb(0, 0, 0);</string>
 background-color: rgb(255, 85, 0);</string>
     </property>
     <property name="text">
-     <string>Remove empty columns</string>
+     <string>Remove empty columns
+ (flagged_csv to be created first)</string>
     </property>
    </widget>
    <zorder>label_4</zorder>

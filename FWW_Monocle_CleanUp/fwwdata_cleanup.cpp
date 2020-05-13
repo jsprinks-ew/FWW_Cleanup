@@ -181,13 +181,13 @@ void FWWData_Cleanup::flagErrors()
             }
 
         }
-            qDebug() << geopos;
-            qDebug() << nitratepos;
-            qDebug() << phosphatepos;
-            qDebug() << turbpos;
-            qDebug() << notespos;
-            qDebug() << colourpos;
-            qDebug() << datasize;
+            //qDebug() << geopos;
+            //qDebug() << nitratepos;
+            //qDebug() << phosphatepos;
+            //qDebug() << turbpos;
+            //qDebug() << notespos;
+            //qDebug() << colourpos;
+            //qDebug() << datasize;
 
             Output.close();
             File.close();
@@ -199,7 +199,44 @@ void FWWData_Cleanup::deleteColumns()
     QFile Input(input.replace(".csv","_flagged.csv"));
     QStringList rows;
     QStringList check;
+    QString row;
+    int rownumber = 0;
+    int i = 0;
+    int j = 0;
 
+    if(Input.open(QIODevice::ReadOnly))
+    {
+        QTextStream out(&Input);
+        i = 0;
+        while(!out.atEnd())
+        {
+
+            row=out.readLine();
+            rows = row.split(",");
+            rownumber = rownumber + 1;
+
+            for (i = 0; i < rows.size(); i++)
+
+            {
+                if (check.size() < rows.size())
+                {
+                    check.append("-");
+                }
+                if (rownumber != 1 && rows[i] != "-")
+                {
+                    check[i] = "keep";
+                }
+
+            }
+
+        }
+
+        qDebug() << check.size();
+        qDebug() << check;
+
+        QTextStream update(&Input);
+        j = 0;
+    }
 
 }
 

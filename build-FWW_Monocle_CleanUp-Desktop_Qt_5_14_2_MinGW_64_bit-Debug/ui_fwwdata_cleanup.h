@@ -193,7 +193,8 @@ public:
         geo_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Location issues:", nullptr));
         turb_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Turbidity issues:", nullptr));
         notes_dis->setText(QCoreApplication::translate("FWWData_Cleanup", "Test data:", nullptr));
-        columnbutton->setText(QCoreApplication::translate("FWWData_Cleanup", "Remove empty columns", nullptr));
+        columnbutton->setText(QCoreApplication::translate("FWWData_Cleanup", "Remove empty columns\n"
+" (flagged_csv to be created first)", nullptr));
     } // retranslateUi
 
 };
